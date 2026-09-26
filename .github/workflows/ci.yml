@@ -12,9 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Sürüm package.json içindeki "packageManager" alanından okunur;
+      # burada ikinci kez belirtmek çakışma hatası veriyor.
       - uses: pnpm/action-setup@v4
-        with:
-          version: 11
 
       - uses: actions/setup-node@v4
         with:
