@@ -113,7 +113,7 @@ Doldurulacaklar `.env.example` içinde açıklamalı. Gizli bir değeri
 ekrana ve shell geçmişine düşürmeden yazmak için:
 
 ```bash
-node scripts/set-secret.mjs SUPABASE_SERVICE_ROLE_KEY
+node scripts/set-secret.mjs NUXT_SUPABASE_SERVICE_KEY
 ```
 
 ---
@@ -145,8 +145,8 @@ Repodaki `tiles/*.json` dosyalarını tabloya taşır. Kilim boş da başlayabil
 ```bash
 node scripts/import-tiles.mjs --kuru   # önce ne yapacağını göster
 
-SUPABASE_URL="https://xxxx.supabase.co" \
-SUPABASE_SERVICE_ROLE_KEY="sb_secret_..." \
+NUXT_SUPABASE_URL="https://xxxx.supabase.co" \
+NUXT_SUPABASE_SERVICE_KEY="sb_secret_..." \
 node scripts/import-tiles.mjs
 ```
 

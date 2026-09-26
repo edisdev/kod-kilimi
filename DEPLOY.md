@@ -18,21 +18,25 @@ Sunucuda proje kökünde bir `.env` oluştur. Şablon `.env.example` içinde.
 
 ```env
 # Sunucu tarafı — tarayıcıya inmez
-SUPABASE_URL=https://xxxx.supabase.co
-SUPABASE_ANON_KEY=sb_publishable_...
-SUPABASE_SERVICE_ROLE_KEY=sb_secret_...
+NUXT_SUPABASE_URL=https://xxxx.supabase.co
+NUXT_SUPABASE_ANON_KEY=sb_publishable_...
+NUXT_SUPABASE_SERVICE_KEY=sb_secret_...
 
-GITHUB_APP_ID=123456
-GITHUB_APP_INSTALLATION_ID=12345678
-GITHUB_APP_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----"
-GITHUB_WEBHOOK_SECRET=uzun-rastgele-metin
+NUXT_GITHUB_APP_ID=123456
+NUXT_GITHUB_APP_INSTALLATION_ID=12345678
+NUXT_GITHUB_APP_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----"
+NUXT_GITHUB_WEBHOOK_SECRET=uzun-rastgele-metin
 
 # Tarayıcıya inen — gizli değil
 NUXT_PUBLIC_REPO=edisdev/kod-kilimi
 NUXT_PUBLIC_SITE_URL=https://kodkilimi.com
 ```
 
-> `SUPABASE_SERVICE_ROLE_KEY` bütün güvenlik kurallarını atlar. Yalnızca
+> **Adlardaki `NUXT_` öneki zorunlu.** Nuxt, runtimeConfig anahtarlarını
+> yalnızca bu önekle eşler. `SUPABASE_URL` yazarsan değer uygulamaya hiç
+> ulaşmaz; site açılır ama "bağlantı yapılandırılmamış" der.
+
+> `NUXT_SUPABASE_SERVICE_KEY` bütün güvenlik kurallarını atlar. Yalnızca
 > sunucudaki `.env` dosyasında durur; depoya, imaja ve tarayıcıya girmez.
 
 ## 2. Kurulum

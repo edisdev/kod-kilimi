@@ -53,25 +53,31 @@ export default defineNuxtConfig({
     '#domain': fileURLToPath(new URL('./shared/domain', import.meta.url)),
   },
 
+  // Değerler ÇALIŞMA ANINDA ortam değişkenlerinden gelir. Nuxt her anahtarı
+  // NUXT_ önekli, BÜYÜK_HARFLİ karşılığıyla eşler:
+  //   supabaseUrl       ← NUXT_SUPABASE_URL
+  //   public.repo       ← NUXT_PUBLIC_REPO
+  //
+  // Buraya `process.env.X` yazmak işe yaramaz: o ifade derleme anında
+  // okunur ve imaja sabitlenir. Docker'da derleme sırasında .env yoktur.
   runtimeConfig: {
     // ── Yalnızca sunucuda. Tarayıcıya hiçbiri inmez. ──
-    supabaseUrl: process.env.SUPABASE_URL || '',
-    supabaseAnonKey: process.env.SUPABASE_ANON_KEY || '',
+    supabaseUrl: '',
+    supabaseAnonKey: '',
     // pr_number / pr_status sütunlarına hiçbir kullanıcı yazamaz; pull
-    // request durumunu güncellemek için servis rolü gerekiyor. Sunucuda
-    // kalır, tarayıcıya inmez.
-    supabaseServiceKey: process.env.SUPABASE_SERVICE_ROLE_KEY || '',
+    // request durumunu güncellemek için servis rolü gerekiyor.
+    supabaseServiceKey: '',
 
     // Pull request'i açan GitHub App. Özel anahtar PKCS#8 biçiminde olmalı.
-    githubAppId: process.env.GITHUB_APP_ID || '',
-    githubAppInstallationId: process.env.GITHUB_APP_INSTALLATION_ID || '',
-    githubAppPrivateKey: process.env.GITHUB_APP_PRIVATE_KEY || '',
-    githubWebhookSecret: process.env.GITHUB_WEBHOOK_SECRET || '',
+    githubAppId: '',
+    githubAppInstallationId: '',
+    githubAppPrivateKey: '',
+    githubWebhookSecret: '',
 
     public: {
       // Yalnızca gösterim için; gizli değil.
-      repo: process.env.NUXT_PUBLIC_REPO || 'edisdev/kod-kilimi',
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://kodkilimi.com',
+      repo: 'edisdev/kod-kilimi',
+      siteUrl: 'https://kodkilimi.com',
     },
   },
 
