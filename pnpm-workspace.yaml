@@ -1,0 +1,3 @@
+# esbuild, platforma göre derlenmiş ikiliyi kurmak için kurulum betiği çalıştırır.
+allowBuilds:
+  esbuild: true

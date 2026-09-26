@@ -1,0 +1,175 @@
+/*
+ * Kod Kilimi — tasarım dili
+ * Değerler onaylı tasarımdan (design/Main.dc.html) birebir alınmıştır.
+ */
+
+:root {
+  /* Yüzeyler */
+  --canvas: #f8ede7;          /* page, gül kurusu yün */
+  --surface: #fffaf6;          /* kartlar, tezgâh */
+  --border: #ead8cf;          /* kenarlık, boş hücre */
+  --weave: #d9c7ac;     /* kilim dokuma zemini */
+  --wool: #f3e6d3;        /* motif zemini */
+
+  /* Mürekkep */
+  --ink: #2a2350;
+  --muted: #6b6380;
+
+  /* Kök boyalar */
+  --accent: #b8322b;
+  --accent-shadow: #7e1f1a;
+  --gold: #e3a935;
+  --teal: #3f7c78;
+
+  /* Durum renkleri */
+  --success-bg: #e4f0ec;
+  --success-border: #b7d5cc;
+  --success-text: #2a4a47;
+  --pending-bg: #fbefd6;
+  --pending-text: #7a5410;
+
+  /* Yuvarlaklıklar */
+  --radius-card: 24px;
+  --radius-box: 20px;
+  --radius-field: 14px;
+  --radius-field-sm: 12px;
+  --radius-pill: 999px;
+
+  /* Yazı tipleri */
+  --font-display: 'Baloo 2', 'Nunito', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Nunito', 'Segoe UI', system-ui, sans-serif;
+
+  /* Ölçüler */
+  --bench-width: 390px;
+  --tile-gap: 6px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Görünür odak — erişilebilirlik için her yerde korunur. */
+:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Yalnızca ekran okuyucular için. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+ * Hareketler
+ *
+ * Hepsi yukarıdaki prefers-reduced-motion kuralına tabidir: hareketi
+ * kapatmış kullanıcıda süreler sıfırlanır, sonuç anında görünür.
+ * ───────────────────────────────────────────────────────────── */
+
+/* Kilime yeni dokunan bir ilmek. */
+@keyframes knot-weave {
+  from {
+    opacity: 0;
+    transform: scale(0.35);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Yeni karonun etrafında sönen halka. */
+@keyframes tile-pulse {
+  from {
+    box-shadow: 0 0 0 0 rgb(184 50 43 / 55%);
+  }
+  to {
+    box-shadow: 0 0 0 16px rgb(184 50 43 / 0%);
+  }
+}
+
+/* Tezgâhta boyanan hücrenin geri bildirimi. */
+@keyframes paint-pop {
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* Kart ve panellerin yumuşak girişi. */
+@keyframes soft-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Sayaç değeri değişince kısa vurgu. */
+@keyframes count-pop {
+  50% {
+    transform: scale(1.3);
+  }
+}
+
+/* Tezgâhta gidip gelen mekik — kilim verisi beklenirken. */
+@keyframes shuttle {
+  from {
+    transform: translateX(-110%);
+  }
+  to {
+    transform: translateX(110%);
+  }
+}

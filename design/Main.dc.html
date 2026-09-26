@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Kod Kilimi</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&amp;family=Nunito:wght@400;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 100%; min-height: {{L.minH}}px; box-sizing: border-box; padding: {{L.pad}}; background: #F8EDE7; color: #2A2350; font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif; display: flex; flex-direction: column; gap: {{L.gap}}px">
+
+  <header style="display: flex; flex-direction: column; gap: 12px; max-width: 720px">
+    <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: {{accent}}">Açık kaynak · 81 il · tek kilim</span>
+    <div style="display: flex; align-items: center; gap: 16px">
+      <div aria-hidden="true" style="display: grid; grid-template-columns: repeat(8, {{L.logoKnot}}px); grid-template-rows: repeat(8, {{L.logoKnot}}px); border-radius: 6px; overflow: hidden; flex-shrink: 0">
+        <sc-for list="{{logo}}" as="cell" hint-placeholder-count="64">
+          <div style="background: {{cell.c}}"></div>
+        </sc-for>
+      </div>
+      <h1 style="margin: 0; font-family: 'Baloo 2', 'Nunito', sans-serif; font-weight: 800; font-size: {{L.h1}}px; line-height: 0.95; letter-spacing: -0.01em">Kod Kilimi</h1>
+    </div>
+    <p style="margin: 0; font-family: 'Baloo 2', 'Nunito', sans-serif; font-weight: 600; font-size: {{L.tagline}}px; line-height: 1.2; color: {{accent}}">Bir ilmek de sen at.</p>
+    <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #6B6380; max-width: 600px">Türkiye'deki geliştiricilerin birlikte dokuduğu bir kilim. 8×8 ilmeklik motifini çiz, GitHub ile gir, tek tıkla kilime ekle. İlk açık kaynak katkın için sıcacık bir başlangıç.</p>
+    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px">
+      <span style="display: inline-flex; align-items: baseline; gap: 6px; padding: 8px 14px; border-radius: 999px; background: #FFFAF6; border: 1px solid #EAD8CF; font-size: 14px; color: #6B6380"><b style="font-family: 'Baloo 2', sans-serif; font-size: 20px; line-height: 1; color: #2A2350; font-variant-numeric: tabular-nums">{{stats.people}}</b> dokuyucu</span>
+      <span style="display: inline-flex; align-items: baseline; gap: 6px; padding: 8px 14px; border-radius: 999px; background: #FFFAF6; border: 1px solid #EAD8CF; font-size: 14px; color: #6B6380"><b style="font-family: 'Baloo 2', sans-serif; font-size: 20px; line-height: 1; color: #2A2350; font-variant-numeric: tabular-nums">{{stats.cities}}</b> şehir</span>
+      <span style="display: inline-flex; align-items: baseline; gap: 6px; padding: 8px 14px; border-radius: 999px; background: #FFFAF6; border: 1px solid #EAD8CF; font-size: 14px; color: #6B6380"><b style="font-family: 'Baloo 2', sans-serif; font-size: 20px; line-height: 1; color: #2A2350; font-variant-numeric: tabular-nums">{{stats.knots}}</b> ilmek</span>
+    </div>
+  </header>
+
+  <div style="display: grid; grid-template-columns: {{L.cols}}; grid-template-areas: {{L.areas}}; gap: {{L.gap}}px; align-items: start">
+
+    <section aria-label="Kilim" style="grid-area: kilim; display: flex; flex-direction: column; align-items: center; gap: 12px">
+      <div aria-hidden="true" style="width: {{L.fringeW}}px; height: 14px; background: repeating-linear-gradient(90deg, #E2CDB4 0 3px, transparent 3px 7px)"></div>
+      <div style="background: #2A2350; padding: 6px; border-radius: 18px; margin-top: -12px; margin-bottom: -12px">
+        <div style="background: repeating-linear-gradient(-45deg, #B8322B 0 6px, #E3A935 6px 10px); padding: 8px; border-radius: 13px">
+          <div style="background: #F3E6D3; padding: 5px; border-radius: 8px">
+            <div style="background: #D9C7AC; padding: 10px; border-radius: 5px; display: grid; grid-template-columns: repeat({{L.wallCols}}, {{L.tile}}px); gap: 6px">
+              <sc-for list="{{slots}}" as="slot" hint-placeholder-count="40">
+                <div title="{{slot.label}}" style="width: {{L.tile}}px; height: {{L.tile}}px; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); grid-template-rows: repeat(8, minmax(0, 1fr)); border-radius: 3px; overflow: hidden; {{slot.ring}}">
+                  <sc-for list="{{slot.cells}}" as="cell" hint-placeholder-count="64">
+                    <div style="background: {{cell.c}}"></div>
+                  </sc-for>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div aria-hidden="true" style="width: {{L.fringeW}}px; height: 14px; background: repeating-linear-gradient(90deg, #E2CDB4 0 3px, transparent 3px 7px)"></div>
+      <p style="margin: 0; font-size: 14px; color: #6B6380; text-align: center">Motiflerin üzerine gel, kimin olduğunu gör. Kesikli çerçeve senin yerin.</p>
+    </section>
+
+    <aside aria-label="Motifini doku" style="grid-area: bench; background: #FFFAF6; border: 1px solid #EAD8CF; border-radius: 24px; overflow: hidden; display: flex; flex-direction: column">
+      <div aria-hidden="true" style="height: 10px; background: repeating-linear-gradient(90deg, #B8322B 0 14px, #E3A935 14px 20px, #2A2350 20px 34px, #E3A935 34px 40px)"></div>
+      <div style="padding: {{L.benchPad}}px; display: flex; flex-direction: column; gap: 28px">
+
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <div style="display: flex; align-items: center; gap: 10px">
+            <span style="width: 28px; height: 28px; border-radius: 50%; background: #2A2350; color: #FFFAF6; display: inline-flex; align-items: center; justify-content: center; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 15px">1</span>
+            <h2 style="margin: 0; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 22px">Motifini çiz</h2>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 2px; padding: 6px; background: #EAD8CF; border-radius: 14px">
+            <sc-for list="{{grid}}" as="cell" hint-placeholder-count="64">
+              <button type="button" aria-label="{{cell.label}}" onClick="{{cell.paint}}" style="all: unset; cursor: pointer; display: block; aspect-ratio: 1; border-radius: 4px; background: {{cell.c}}"></button>
+            </sc-for>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 6px">
+            <sc-for list="{{dyes}}" as="d" hint-placeholder-count="8">
+              <button type="button" aria-label="{{d.name}}" title="{{d.name}}" onClick="{{d.pick}}" style="all: unset; cursor: pointer; aspect-ratio: 1; min-height: 32px; border-radius: 50%; box-sizing: border-box; background: {{d.hex}}; {{d.ring}}"></button>
+            </sc-for>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap">
+            <span style="font-size: 14px; font-weight: 700; color: #6B6380">{{dyeName}}</span>
+            <div style="display: flex; gap: 6px">
+              <button type="button" onClick="{{toggleMirror}}" aria-pressed="{{mirrorPressed}}" style="font: 700 13px/1 'Nunito', sans-serif; padding: 10px 14px; min-height: 36px; border-radius: 999px; cursor: pointer; {{mirrorStyle}}">Ayna</button>
+              <button type="button" onClick="{{clear}}" style="font: 700 13px/1 'Nunito', sans-serif; padding: 10px 14px; min-height: 36px; border-radius: 999px; cursor: pointer; border: 1.5px solid #EAD8CF; background: transparent; color: #2A2350">Temizle</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <div style="display: flex; align-items: center; gap: 10px">
+            <span style="width: 28px; height: 28px; border-radius: 50%; background: #2A2350; color: #FFFAF6; display: inline-flex; align-items: center; justify-content: center; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 15px">2</span>
+            <h2 style="margin: 0; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 22px">Kendini tanıt</h2>
+          </div>
+          <sc-if value="{{loggedOut}}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <button type="button" onClick="{{login}}" style="all: unset; box-sizing: border-box; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px; min-height: 50px; border-radius: 14px; background: #2A2350; color: #FFFAF6; font: 800 16px/1 'Nunito', sans-serif">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="6.5" r="3" stroke="#FFFAF6" stroke-width="1.8"></circle><path d="M3.5 15c.8-2.6 3-4 5.5-4s4.7 1.4 5.5 4" stroke="#FFFAF6" stroke-width="1.8" stroke-linecap="round"></path></svg>
+                GitHub ile giriş yap
+              </button>
+              <span style="font-size: 13px; line-height: 1.5; color: #6B6380">Sadece kullanıcı adını ve profil fotoğrafını görürüz. Şifren bize gelmez.</span>
+            </div>
+          </sc-if>
+          <sc-if value="{{loggedIn}}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 14px; background: #F8EDE7; border: 1.5px solid #EAD8CF">
+              <span aria-hidden="true" style="width: 40px; height: 40px; border-radius: 50%; background: #E3A935; color: #2A2350; display: inline-flex; align-items: center; justify-content: center; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px; flex-shrink: 0">{{initial}}</span>
+              <span style="display: flex; flex-direction: column; gap: 1px; flex-grow: 1; min-width: 0">
+                <b style="font-size: 15px">@{{user}}</b>
+                <span style="font-size: 13px; color: #6B6380">GitHub ile bağlandı</span>
+              </span>
+              <button type="button" onClick="{{logout}}" style="all: unset; cursor: pointer; font-size: 13px; font-weight: 700; color: #6B6380; text-decoration: underline; text-underline-offset: 3px; padding: 8px 4px">Çıkış</button>
+            </div>
+          </sc-if>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <label for="city" style="font-size: 14px; font-weight: 700">Şehrin</label>
+            <select id="city" value="{{city}}" onChange="{{onCity}}" style="font: 16px 'Nunito', sans-serif; padding: 11px 12px; border-radius: 12px; border: 1.5px solid #EAD8CF; background: #F8EDE7; color: #2A2350">
+              <option value="">Şehir seç</option>
+              <sc-for list="{{cities}}" as="c" hint-placeholder-count="81">
+                <option value="{{c}}">{{c}}</option>
+              </sc-for>
+            </select>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <label for="message" style="font-size: 14px; font-weight: 700; display: flex; justify-content: space-between">Kilime bir not bırak <span style="font-weight: 600; color: #6B6380; font-variant-numeric: tabular-nums">{{msgCount}}/60</span></label>
+            <input id="message" value="{{message}}" onChange="{{onMsg}}" maxlength="60" placeholder="İsteğe bağlı" style="font: 16px 'Nunito', sans-serif; padding: 11px 12px; border-radius: 12px; border: 1.5px solid #EAD8CF; background: #F8EDE7; color: #2A2350">
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <div style="display: flex; align-items: center; gap: 10px">
+            <span style="width: 28px; height: 28px; border-radius: 50%; background: #2A2350; color: #FFFAF6; display: inline-flex; align-items: center; justify-content: center; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 15px">3</span>
+            <h2 style="margin: 0; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 22px">Kilime ekle</h2>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 14px; padding: 14px; border-radius: 16px; background: #F8EDE7">
+            <div style="width: 64px; height: 64px; flex-shrink: 0; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); grid-template-rows: repeat(8, minmax(0, 1fr)); border-radius: 6px; overflow: hidden; box-shadow: 0 0 0 3px #FFFAF6, 0 0 0 4px #EAD8CF">
+              <sc-for list="{{preview}}" as="cell" hint-placeholder-count="64">
+                <div style="background: {{cell.c}}"></div>
+              </sc-for>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+              <span style="font-weight: 800; font-size: 16px; overflow-wrap: anywhere">{{previewName}}</span>
+              <span style="font-size: 14px; color: #6B6380">{{previewCity}}</span>
+              <sc-if value="{{hasMessage}}" hint-placeholder-val="{{ false }}">
+                <span style="font-size: 14px; font-style: italic; color: #6B6380; overflow-wrap: anywhere">“{{messageTrim}}”</span>
+              </sc-if>
+            </div>
+          </div>
+
+          <sc-if value="{{notAdded}}" hint-placeholder-val="{{ true }}">
+          <div style="display: flex; flex-direction: column; gap: 14px">
+          <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px">
+            <sc-for list="{{checks}}" as="ck" hint-placeholder-count="3">
+              <li style="display: flex; align-items: center; gap: 10px; font-size: 15px; {{ck.textStyle}}">
+                <span aria-hidden="true" style="width: 20px; height: 20px; border-radius: 50%; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; {{ck.dotStyle}}">
+                  <sc-if value="{{ck.done}}" hint-placeholder-val="{{ false }}">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2 5 8.5l4.5-5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  </sc-if>
+                </span>
+                {{ck.text}}
+              </li>
+            </sc-for>
+          </ul>
+
+          <sc-if value="{{ready}}" hint-placeholder-val="{{ false }}">
+            <button type="button" onClick="{{add}}" style="all: unset; box-sizing: border-box; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px; min-height: 54px; border-radius: 999px; background: {{accent}}; color: #FFFFFF; font: 800 17px/1 'Nunito', sans-serif; box-shadow: 0 4px 0 #7E1F1A">
+              Kilime ekle
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M4 9h10M10 5l4 4-4 4" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </button>
+          </sc-if>
+          <sc-if value="{{notReady}}" hint-placeholder-val="{{ true }}">
+            <span aria-disabled="true" style="display: flex; justify-content: center; align-items: center; min-height: 54px; border-radius: 999px; background: #EAD8CF; color: #8A7B78; font: 800 17px/1 'Nunito', sans-serif">Kilime ekle</span>
+          </sc-if>
+
+          <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #6B6380">Motifin hemen kilimde görünür. Katkı grafiğine de yazılsın diye senin adına bir pull request açarız.</p>
+          </div>
+          </sc-if>
+
+          <sc-if value="{{added}}" hint-placeholder-val="{{ false }}">
+            <div role="status" style="display: flex; flex-direction: column; gap: 14px; padding: 18px; border-radius: 18px; background: #E4F0EC; border: 1.5px solid #B7D5CC">
+              <div style="display: flex; align-items: center; gap: 10px">
+                <span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 50%; background: #3F7C78; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0">
+                  <svg width="16" height="16" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2 5 8.5l4.5-5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </span>
+                <span style="font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 22px; line-height: 1.1">Motifin kilimde!</span>
+              </div>
+              <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #2A4A47">Kesikli çerçevedeki yerine dokundu. Katkı grafiğin için pull request'in de açıldı.</p>
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px; border-radius: 12px; background: #FFFAF6; flex-wrap: wrap">
+                <span style="display: flex; flex-direction: column; gap: 2px">
+                  <b style="font-size: 15px">PR #128 · @{{user}} kilime katıldı</b>
+                  <span style="font-size: 13px; color: #6B6380">Bot kontrol etti, birleştirilmeyi bekliyor</span>
+                </span>
+                <span style="padding: 6px 10px; border-radius: 999px; background: #FBEFD6; color: #7A5410; font-size: 12px; font-weight: 800">İncelemede</span>
+              </div>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap">
+                <a href="https://github.com/edisdev/kod-kilimi/pulls" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; min-height: 40px; padding: 0 16px; border-radius: 999px; background: #2A2350; color: #FFFAF6; font: 700 14px/1 'Nunito', sans-serif; text-decoration: none">PR'ı gör</a>
+                <button type="button" onClick="{{edit}}" style="min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1.5px solid #B7D5CC; background: transparent; color: #2A2350; font: 700 14px/1 'Nunito', sans-serif; cursor: pointer">Motifi düzenle</button>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </aside>
+
+    <section aria-label="Nasıl çalışıyor" style="grid-area: steps; display: grid; grid-template-columns: {{L.stepCols}}; gap: 16px">
+      <sc-for list="{{steps}}" as="st" hint-placeholder-count="3">
+        <div style="display: flex; gap: 14px; align-items: flex-start; padding: 18px; border-radius: 20px; background: #FFFAF6; border: 1px solid #EAD8CF">
+          <div aria-hidden="true" style="width: 40px; height: 40px; flex-shrink: 0; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); grid-template-rows: repeat(8, minmax(0, 1fr)); border-radius: 5px; overflow: hidden">
+            <sc-for list="{{st.cells}}" as="cell" hint-placeholder-count="64">
+              <div style="background: {{cell.c}}"></div>
+            </sc-for>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 4px">
+            <h3 style="margin: 0; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 18px">{{st.title}}</h3>
+            <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #6B6380">{{st.text}}</p>
+          </div>
+        </div>
+      </sc-for>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#B8322B","options":["#B8322B","#2A2350","#3F7C78","#C8643B"]},"$preview":{"width":1280,"height":1640}}'>
+var DYES = [
+  ["#F3E6D3", "Ham yün · silgi"],
+  ["#B8322B", "Kök boya kırmızısı"],
+  ["#2A2350", "Çivit"],
+  ["#E3A935", "Cehri sarısı"],
+  ["#5B7F3F", "Asma yaprağı"],
+  ["#5A3524", "Ceviz kabuğu"],
+  ["#D9774A", "Kiremit"],
+  ["#8DB7C4", "Gök mavisi"]
+];
+var TILES = [["edisdev","Samsun","Kilime ilk ilmeği ben attım.","0000000000022000002112000213312002133120002112000002200000000000"],["ornek-01","Konya","Merhaba kilim","0104401010100101006666000001100000011000006666001010010101044010"],["ornek-02","Samsun","Örnek karo","0101101015000051010770105010010550100105010770101500005101011010"],["ornek-03","Bartın","İlk PR'ım","0220022050200205202002026265562662655626202002025020020502200220"],["ornek-04","Tokat","Selam dokuyucular","0000000064633646434664340063360000633600434664346463364600000000"],["ornek-05","Edirne","İlk PR'ım","0066660022266222464004640240042002400420464004642226622200666600"],["ornek-06","Artvin","Örnek: bereket","3636636303600630503003050600006006000060503003050360063036366363"],["ornek-07","Niğde","Örnek motif","0441144070411407747447470000000000000000747447477041140704411440"],["ornek-08","Denizli","Merhaba kilim","2106601260022006161111616011110660111106161111616002200621066012"],["ornek-09","Antalya","Örnek motif","6666666606600660000660000075570000755700000660000660066066666666"],["ornek-10","Antalya","Örnek karo","2012210200022000501111052150051221500512501111050002200020122102"],["ornek-11","Burdur","Örnek motif","4000000444700744600660064060060440600604600660064470074440000004"],["ornek-12","Aksaray","İlk PR'ım","3606606303333330603003060100001001000010603003060333333036066063"],["ornek-13","Zonguldak","Örnek motif","0363363001366310330000330060060000600600330000330136631003633630"],["ornek-14","Malatya","Merhaba kilim","0540045005055050054004505550055555500555054004500505505005400450"],["ornek-ankara","Ankara","Bu bir örnek karodur.","0001100000144100014224101427724114277241014224100014410000011000"],["ornek-istanbul","İstanbul","Örnek: yıldız","3000000313000031013113100013310000133100013113101300003130000003"],["ornek-izmir","İzmir","Örnek: koçboynuzu motifi","1100001110100101100110010101101000011000000110000011110000000000"]];
+var CITIES = ["Adana","Adıyaman","Afyonkarahisar","Ağrı","Aksaray","Amasya","Ankara","Antalya","Ardahan","Artvin","Aydın","Balıkesir","Bartın","Batman","Bayburt","Bilecik","Bingöl","Bitlis","Bolu","Burdur","Bursa","Çanakkale","Çankırı","Çorum","Denizli","Diyarbakır","Düzce","Edirne","Elazığ","Erzincan","Erzurum","Eskişehir","Gaziantep","Giresun","Gümüşhane","Hakkari","Hatay","Iğdır","Isparta","İstanbul","İzmir","Kahramanmaraş","Karabük","Karaman","Kars","Kastamonu","Kayseri","Kilis","Kırıkkale","Kırklareli","Kırşehir","Kocaeli","Konya","Kütahya","Malatya","Manisa","Mardin","Mersin","Muğla","Muş","Nevşehir","Niğde","Ordu","Osmaniye","Rize","Sakarya","Samsun","Siirt","Sinop","Sivas","Şanlıurfa","Şırnak","Tekirdağ","Tokat","Trabzon","Tunceli","Uşak","Van","Yalova","Yozgat","Zonguldak"];
+var REPO = "edisdev/kod-kilimi";
+
+function cellsOf(str) {
+  var out = [];
+  for (var i = 0; i < 64; i++) out.push({ c: DYES[+str[i]][0] });
+  return out;
+}
+var EMPTY = (function () {
+  var out = [];
+  for (var i = 0; i < 64; i++) out.push({ c: ((i % 8) + Math.floor(i / 8)) % 4 === 0 ? "#E6D8C2" : "#F3E6D3" });
+  return out;
+})();
+var TILE_CELLS = TILES.map(function (t) { return cellsOf(t[3]); });
+var STATS = (function () {
+  var cities = {}, knots = 0;
+  TILES.forEach(function (t) { cities[t[1]] = 1; knots += t[3].replace(/0/g, "").length; });
+  return { people: TILES.length, cities: Object.keys(cities).length, knots: knots.toLocaleString("tr-TR") };
+})();
+var STEPS = [
+  { cells: TILE_CELLS[15], title: "Motifini çiz", text: "Sekiz kök boyayla 8×8 ilmeklik bir motif. Ayna açıkken iki yan birlikte dokunur, tıpkı kilimdeki gibi." },
+  { cells: TILE_CELLS[0], title: "GitHub ile gir", text: "Tek tıkla giriş. Kullanıcı adını yazmana, dosya ya da fork uğraşına gerek yok." },
+  { cells: TILE_CELLS[16], title: "Kilimde yerini al", text: "Motifin anında kilime dokunur. Senin adına açılan pull request de katkı grafiğine yazılır." }
+];
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      draft: "0000000000022000002112000213312002133120002112000002200000000000",
+      dye: 1, mirror: true, user: "", city: "", message: "", added: false,
+      w: typeof window !== "undefined" ? window.innerWidth : 1280
+    };
+    this.onResize = this.onResize.bind(this);
+  }
+  componentDidMount() { window.addEventListener("resize", this.onResize); this.onResize(); }
+  componentWillUnmount() { window.removeEventListener("resize", this.onResize); }
+  onResize() { if (window.innerWidth !== this.state.w) this.setState({ w: window.innerWidth }); }
+
+  paint(i) {
+    var d = this.state.draft.split("");
+    var x = i % 8, y = Math.floor(i / 8);
+    var v = +d[i] === this.state.dye ? 0 : this.state.dye;
+    d[i] = String(v);
+    if (this.state.mirror) d[y * 8 + (7 - x)] = String(v);
+    this.setState({ draft: d.join("") });
+  }
+
+  renderVals() {
+    var self = this, s = this.state;
+    var accent = this.props.accent ?? "#B8322B";
+    var compact = s.w < 900;
+
+    var wallCols = compact ? 6 : 8;
+    var tile = compact ? 40 : 64;
+    var slotCount = compact ? 36 : 40;
+    var L = {
+      minH: compact ? 2600 : 1640,
+      pad: compact ? "28px 16px 40px" : "48px 56px 56px",
+      gap: compact ? 28 : 40,
+      h1: compact ? 48 : 76,
+      tagline: compact ? 22 : 28,
+      logoKnot: compact ? 5 : 7,
+      cols: compact ? "minmax(0, 1fr)" : "minmax(0, 1fr) 390px",
+      areas: compact ? "'kilim' 'bench' 'steps'" : "'kilim bench' 'steps bench'",
+      stepCols: compact ? "minmax(0, 1fr)" : "repeat(3, minmax(0, 1fr))",
+      wallCols: wallCols,
+      tile: tile,
+      fringeW: wallCols * tile + (wallCols - 1) * 6 + 20,
+      benchPad: compact ? 20 : 26
+    };
+
+    var slots = [];
+    for (var i = 0; i < slotCount; i++) {
+      if (i < TILES.length) {
+        var t = TILES[i];
+        slots.push({ cells: TILE_CELLS[i], ring: "", label: "@" + t[0] + " · " + t[1] + (t[2] ? " · " + t[2] : "") });
+      } else if (i === TILES.length) {
+        slots.push({
+          cells: cellsOf(s.draft),
+          ring: s.added ? "outline: 3px solid " + accent + "; outline-offset: 2px;" : "outline: 2.5px dashed #2A2350; outline-offset: 2px;",
+          label: s.added ? "@" + s.user + " · " + s.city + (s.message.trim() ? " · " + s.message.trim() : "") : "Senin yerin"
+        });
+      } else {
+        slots.push({ cells: EMPTY, ring: "", label: "Boş, sıradaki dokuyucuyu bekliyor" });
+      }
+    }
+
+    var grid = [];
+    for (var j = 0; j < 64; j++) {
+      (function (k) {
+        grid.push({
+          c: DYES[+s.draft[k]][0],
+          label: "Satır " + (Math.floor(k / 8) + 1) + ", sütun " + (k % 8 + 1),
+          paint: function () { self.paint(k); }
+        });
+      })(j);
+    }
+
+    var dyes = DYES.map(function (d, k) {
+      return {
+        hex: d[0], name: d[1],
+        ring: k === s.dye ? "border: 3px solid #2A2350; box-shadow: inset 0 0 0 2px #FFFAF6;" : "border: 1.5px solid #EAD8CF;",
+        pick: function () { self.setState({ dye: k }); }
+      };
+    });
+
+    var user = s.user;
+    var msg = s.message.trim();
+    var fname = (user || "kullanici-adin").toLowerCase();
+
+    var filled = s.draft.replace(/0/g, "").length;
+    var checks = [
+      { done: filled >= 6, text: filled >= 6 ? "Motif hazır" : "En az 6 ilmek boya (" + filled + "/6)" },
+      { done: !!user, text: user ? "@" + user + " olarak girildi" : "GitHub ile giriş yap" },
+      { done: !!s.city, text: s.city ? s.city : "Şehrini seç" }
+    ].map(function (c) {
+      return {
+        done: c.done, text: c.text,
+        dotStyle: c.done ? "background: #3F7C78;" : "border: 2px dashed #CDB8AE;",
+        textStyle: c.done ? "color: #2A2350; font-weight: 700;" : "color: #6B6380;"
+      };
+    });
+    var ready = checks.every(function (c) { return c.done; });
+
+    return {
+      accent: accent,
+      L: L,
+      logo: TILE_CELLS[0],
+      stats: s.added ? { people: STATS.people + 1, cities: STATS.cities, knots: (TILES.reduce(function (n, t) { return n + t[3].replace(/0/g, "").length; }, 0) + s.draft.replace(/0/g, "").length).toLocaleString("tr-TR") } : STATS,
+      slots: slots,
+      grid: grid,
+      dyes: dyes,
+      dyeName: DYES[s.dye][1],
+      mirrorPressed: s.mirror ? "true" : "false",
+      mirrorStyle: s.mirror
+        ? "border: 1.5px solid #2A2350; background: #2A2350; color: #FFFAF6;"
+        : "border: 1.5px solid #EAD8CF; background: transparent; color: #2A2350;",
+      toggleMirror: function () { self.setState({ mirror: !s.mirror }); },
+      clear: function () { self.setState({ draft: "0".repeat(64) }); },
+      cities: CITIES,
+      city: s.city, message: s.message,
+      msgCount: Array.from(s.message).length,
+      loggedIn: !!user,
+      loggedOut: !user,
+      user: user,
+      initial: user ? user[0].toUpperCase() : "",
+      login: function () { self.setState({ user: "yeni-dokuyucu" }); },
+      logout: function () { self.setState({ user: "", added: false }); },
+      onCity: function (e) { self.setState({ city: e.target.value }); },
+      onMsg: function (e) { self.setState({ message: e.target.value }); },
+      preview: cellsOf(s.draft),
+      previewName: user ? "@" + user : "@kullanici-adin",
+      previewCity: s.city || "Şehrin",
+      hasMessage: !!msg,
+      messageTrim: msg,
+      checks: checks,
+      ready: ready,
+      notReady: !ready,
+      fname: fname,
+      added: s.added,
+      notAdded: !s.added,
+      add: function () { self.setState({ added: true }); },
+      edit: function () { self.setState({ added: false }); },
+      steps: STEPS
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+name: Karo kontrolü
+
+on:
+  pull_request:
+    paths:
+      - "tiles/**"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Değişen dosyaları bul
+        id: diff
+        run: |
+          FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | tr '\n' ' ')
+          echo "files=$FILES" >> "$GITHUB_OUTPUT"
+
+      # Pull request'i kilim botu açtıysa dosyanın sahibi PR yazarı değil,
+      # commit'teki ortak yazardır. Bu satırı herkes uydurabildiği için
+      # doğrulayıcı ona yalnızca PR_AUTHOR_IS_BOT=true iken güvenir.
+      - name: Ortak yazarı bul
+        id: coauthor
+        run: |
+          LOGIN=$(git log origin/${{ github.base_ref }}...HEAD --format=%B \
+            | grep -i '^Co-authored-by:' \
+            | head -1 \
+            | sed -E 's/^[Cc]o-authored-by:[[:space:]]*([^<[:space:]]+).*/\1/')
+          echo "login=$LOGIN" >> "$GITHUB_OUTPUT"
+
+      - name: Karoları doğrula
+        env:
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          PR_COAUTHOR: ${{ steps.coauthor.outputs.login }}
+          PR_AUTHOR_IS_BOT: ${{ github.event.pull_request.user.type == 'Bot' }}
+          CHANGED_FILES: ${{ steps.diff.outputs.files }}
+        run: node scripts/validate.mjs

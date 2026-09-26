@@ -1,0 +1,38 @@
+name: Denetim
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Tip denetimi
+        run: pnpm typecheck
+
+      - name: Karolar
+        run: pnpm validate
+
+      - name: Renk kontrastı
+        run: pnpm contrast
+
+      # Derlemenin bozulmadığını doğrular. Yayın buradan yapılmaz;
+      # site kendi sunucumuzda Docker ile çalışıyor (bkz. DEPLOY.md).
+      - name: Üretim derlemesi
+        run: pnpm build

@@ -1,0 +1,16 @@
+# Tek başına kurulum için (docker-compose.standalone.yml).
+# Sunucuda zaten bir Caddy varsa bu dosya kullanılmaz; bloğu mevcut
+# Caddyfile'a eklersin (bkz. DEPLOY.md, A seçeneği).
+#
+# Caddy sertifikayı Let's Encrypt'ten otomatik alır — alan adının A kaydı
+# bu sunucuyu göstermeli, 80 ve 443 açık olmalı.
+
+kodkilimi.com {
+    encode zstd gzip
+    reverse_proxy web:3000
+}
+
+# www'den çıplak alan adına kalıcı yönlendirme.
+www.kodkilimi.com {
+    redir https://kodkilimi.com{uri} permanent
+}

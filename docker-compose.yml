@@ -1,0 +1,48 @@
+# Kod Kilimi — yayın
+#
+# Bu dosya, sunucuda ZATEN bir Caddy çalıştığını varsayar (baris-akarsu ile
+# paylaşılan kurulum). Caddy ve kilim `web` adlı ortak bir Docker ağında
+# buluşur; kilim dışarıya port açmaz, yalnızca Caddy'den erişilir.
+#
+# Ağ düzeni bilinçli: kilim yalnızca `web` ağında, diğer site kendi ağında,
+# yalnızca Caddy ikisine birden erişiyor. Böylece aynı makinedeki iki
+# uygulama birbirini göremez.
+#
+# Sunucuda bir kez:
+#   docker network create web
+#
+# Sunucuda başka site yoksa: docker-compose.standalone.yml kullan.
+services:
+  web:
+    build: .
+    container_name: kodkilimi
+    restart: unless-stopped
+
+    # Anahtarlar sunucudaki .env dosyasından gelir (.env.example'a bak).
+    # Konteynerin ortam değişkenine geçer; diskte paylaşılan dosya olmaz.
+    env_file: .env
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - HOST=0.0.0.0
+
+    expose:
+      - "3000"
+    networks:
+      - web
+
+    # ── Sertleştirme ──
+    # Uygulama dosya yazmıyor; yazılabilir tek yer geçici dizin.
+    read_only: true
+    tmpfs:
+      - /tmp
+    # Süreç, başlatıldığı yetkiden fazlasını hiçbir şekilde alamaz.
+    security_opt:
+      - no-new-privileges:true
+    # Kilim ağ ve disk kullanmıyor; ayrıcalık gerektiren hiçbir yetenek yok.
+    cap_drop:
+      - ALL
+
+networks:
+  web:
+    external: true
