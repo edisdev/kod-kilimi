@@ -1,15 +1,15 @@
 # Kod Kilimi — yayın
 #
 # Bu dosya, sunucuda ZATEN bir Caddy çalıştığını varsayar (baris-akarsu ile
-# paylaşılan kurulum). Caddy ve kilim `web` adlı ortak bir Docker ağında
+# paylaşılan kurulum). Caddy ve kilim `proxy` adlı ortak bir Docker ağında
 # buluşur; kilim dışarıya port açmaz, yalnızca Caddy'den erişilir.
 #
-# Ağ düzeni bilinçli: kilim yalnızca `web` ağında, diğer site kendi ağında,
+# Ağ düzeni bilinçli: kilim yalnızca `proxy` ağında, diğer site kendi ağında,
 # yalnızca Caddy ikisine birden erişiyor. Böylece aynı makinedeki iki
 # uygulama birbirini göremez.
 #
 # Sunucuda bir kez:
-#   docker network create web
+#   docker network create proxy
 #
 # Sunucuda başka site yoksa: docker-compose.standalone.yml kullan.
 services:
@@ -29,7 +29,7 @@ services:
     expose:
       - "3000"
     networks:
-      - web
+      - proxy
 
     # ── Sertleştirme ──
     # Uygulama dosya yazmıyor; yazılabilir tek yer geçici dizin.
@@ -39,10 +39,10 @@ services:
     # Süreç, başlatıldığı yetkiden fazlasını hiçbir şekilde alamaz.
     security_opt:
       - no-new-privileges:true
-    # Kilim ağ ve disk kullanmıyor; ayrıcalık gerektiren hiçbir yetenek yok.
+    # 3000 ayrıcalıklı olmayan bir port; hiçbir Linux yeteneğine gerek yok.
     cap_drop:
       - ALL
 
 networks:
-  web:
+  proxy:
     external: true

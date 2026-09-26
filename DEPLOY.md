@@ -46,18 +46,18 @@ yerden yönetilir.
 
 ```bash
 # Ortak ağı bir kez oluştur
-docker network create web
+docker network create proxy
 ```
 
 Mevcut Caddy'yi bu ağa kat. Onun `docker-compose.yml`inde caddy servisine:
 
 ```yaml
     networks:
-      - web
+      - proxy
       - default
 
 networks:
-  web:
+  proxy:
     external: true
 ```
 
